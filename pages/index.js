@@ -202,7 +202,7 @@ export default function Home() {
 								handlePreferenceChange(event)
 							}}
 							type="checkbox" />
-						Ignore Past Words (updated 2022-08-16)
+						Ignore Past Words (as of 2022-08-16)
 					</label>
 					<label className="block mb-2">
 						<input
