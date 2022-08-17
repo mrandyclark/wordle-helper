@@ -111,29 +111,6 @@ export default function Home() {
 				/>
 
 				<div className="border-2 my-4 p-2 rounded-lg">
-					<input
-						className="border-2 mb-2 p-2 w-full"
-						value={newWord.word} 
-						onChange={(event) => {
-							updateNewWord(event);
-						}}
-					/>
-					<Button
-						className="bg-blue-500 hover:bg-blue-700"
-						onClick={() => { addUserWord(newWord.word) }}
-						text="Add Word"
-					/>
-					{addWordError && addWordError != '' && (
-						<Typography
-							className="bg-red-100 mt-4 p-2 text-center"
-							component="div"
-						>
-							{addWordError}
-						</Typography>
-					)}
-				</div>
-
-				<div className="border-2 my-4 p-2 rounded-lg">
 					{ nextWords && (
 						<div className="mb-4">
 							{nextWords.length > 0 && (
@@ -217,10 +194,33 @@ export default function Home() {
 				</div>
 
 				<div className="border-2 my-4 p-2 rounded-lg">
+					<input
+						className="border-2 mb-2 p-2 w-full"
+						value={newWord.word} 
+						onChange={(event) => {
+							updateNewWord(event);
+						}}
+					/>
+					<Button
+						className="bg-blue-500 hover:bg-blue-700"
+						onClick={() => { addUserWord(newWord.word) }}
+						text="Add Custom Word"
+					/>
+					{addWordError && addWordError != '' && (
+						<Typography
+							className="bg-red-100 mt-4 p-2 text-center"
+							component="div"
+						>
+							{addWordError}
+						</Typography>
+					)}
+				</div>
+
+				<div className="border-2 my-4 p-2 rounded-lg">
 					<Button
 						className="bg-red-700 hover:bg-red-900"
 						onClick={() => { clearUserWords() }}
-						text="Clear Words"
+						text="Clear All Words"
 					/>
 				</div>
 
