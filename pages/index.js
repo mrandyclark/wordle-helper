@@ -93,7 +93,7 @@ export default function Home() {
 						Help My Wordle!
 					</Typography>
 					<Typography className="italic text-center" variant="body">
-						Add your words using the text field, update the letter statuses by clicking them before getting the next word.
+						Add words, update the letter statuses by clicking them, get a list of next words.
 					</Typography>
 					<a
 						className="block text-blue-500 text-center"
@@ -101,7 +101,7 @@ export default function Home() {
 						rel="noreferrer"
 						target="_blank"
 					>
-						How to Use #HelpMyWordle
+						Or, watch this dumb how-to video.
 					</a>
 				</div>
 				
@@ -252,7 +252,7 @@ export default function Home() {
 						component="span"
 						variant="body"
 					>
-						{' '}and has no affiliation with anything but his dumb thoughts.
+						{' '}and has no affiliation with anything but his idiotic thoughts.
 					</Typography>
 					
 				</div>
