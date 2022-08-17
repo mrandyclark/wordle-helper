@@ -9,11 +9,12 @@ export default function Home() {
 
 	const [addWordError, setAddWordError] = useState('');
 	const [newWord, setNewWord] = useState({ word: '' });
-	const [nextWords, setNextWords] = useState([]);
+	const [nextWords, setNextWords] = useState();
 	const [userWords, setUserWords] = useState([]);
 
 	const [preferences, setPreferences] = useState({
 		includeDuplicateLetters: false,
+		ignorePastWords: false,
 		useAllNewLetters: false,
 		useClusterBonus: false
 	});
@@ -35,7 +36,7 @@ export default function Home() {
 		const split = word.split('');
 		newUserWords.push({
 			letters: split.map((l) => {
-				return { letter: l, ...defaultLetter }
+				return { letter: l.toLowerCase(), ...defaultLetter }
 			})
 		});
 
@@ -54,11 +55,9 @@ export default function Home() {
 	};
 	
 	const handlePreferenceChange = (event) => {
-		if (['includeDuplicateLetters', 'useClusterBonus'].includes(event.target.name)) {
-			let newPreferences = { ...preferences };
-			newPreferences[event.target.name] = event.target.checked;
-			setPreferences(newPreferences);
-		}
+		let newPreferences = { ...preferences };
+		newPreferences[event.target.name] = event.target.checked;
+		setPreferences(newPreferences);
 	};
 
 	const updateNewWord = (event) => {
@@ -146,6 +145,16 @@ export default function Home() {
 							}}
 							type="checkbox" />
 						Include Duplicate Letters
+					</label>
+					<label className="block mb-2">
+						<input
+							className="mr-2"
+							name="ignorePastWords"
+							onChange={(event) => {
+								handlePreferenceChange(event)
+							}}
+							type="checkbox" />
+						Ignore Past Words (updated 2022-08-16)
 					</label>
 					<label className="block mb-2">
 						<input

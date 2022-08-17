@@ -11,7 +11,7 @@ const statuses = [
 const Letter = ({letterIndex, letter, updateLetterStatus}) => {
 
 	return (
-		<div
+		<Typography component="div" variant="h4"
 			className={classNames(
 				"text-center py-4 w-1/5",
 				letter.status === 'incorrect' && 'bg-gray-200',
@@ -27,8 +27,8 @@ const Letter = ({letterIndex, letter, updateLetterStatus}) => {
 				updateLetterStatus(statuses[newStatusIndex]);
 			}}
 		>
-			<Typography>{letter.letter}</Typography>
-		</div>
+			{letter.letter.toUpperCase()}
+		</Typography>
 	);
 }
 const WordleInput = ({ updateUserWord, words }) => {

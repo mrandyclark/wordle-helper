@@ -42,7 +42,7 @@ const processWord = (scores, word) => {
 	};
 }
 
-const processWords = (words) => {
+const processWords = () => {
 	const scores = getScores();
 
 	const processed = words.map((word) => {
