@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 export default function Home() {
 
-	const [addWordError, setAddWordError] = useState('');
+	const [addWordError, setAddWordError] = useState();
 	const [newWord, setNewWord] = useState({ word: '' });
 	const [nextWords, setNextWords] = useState();
 	const [userWords, setUserWords] = useState([]);
@@ -25,7 +25,7 @@ export default function Home() {
 			return;
 		}
 
-		setAddWordError('');
+		setAddWordError();
 		
 		const defaultLetter = {
 			status: 'incorrect'
@@ -45,7 +45,10 @@ export default function Home() {
 		setNextWords(undefined);
 	};
 
-	const clearUserWords = () => {
+	const clearAll = () => {
+		setAddWordError();
+		setNewWord({ word: '' });
+		setNextWords(undefined);
 		setUserWords([]);
 	};
 	
@@ -219,7 +222,7 @@ export default function Home() {
 				<div className="border-2 my-4 p-2 rounded-lg">
 					<Button
 						className="bg-red-700 hover:bg-red-900"
-						onClick={() => { clearUserWords() }}
+						onClick={() => { clearAll() }}
 						text="Clear All Words"
 					/>
 				</div>
