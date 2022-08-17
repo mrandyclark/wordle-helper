@@ -183,6 +183,7 @@ export default function Home() {
 											<Button
 												className="bg-gray-500 flex-1"
 												onClick={() => {
+													// eslint-disable-next-line react-hooks/rules-of-hooks
 													useGeneratedWord(nextWord.word)
 												}}
 												text="Use"
