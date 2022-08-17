@@ -1,7 +1,7 @@
-import '../styles/globals.css'
+import '/public/tailwind.css';
 
-function MyApp({ Component, pageProps }) {
+function WordleHelper({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
 
-export default MyApp
+export default WordleHelper
