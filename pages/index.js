@@ -97,7 +97,7 @@ export default function Home() {
 					</Typography>
 					<a
 						className="block text-blue-500 text-center"
-						href="https://www.youtube.com/shorts/z_IxkZoXEno"
+						href="https://youtube.com/shorts/htVzmTzyhZw"
 						rel="noreferrer"
 						target="_blank"
 					>
