@@ -13,7 +13,7 @@ const Letter = ({letterIndex, letter, updateLetterStatus}) => {
 	return (
 		<Typography component="div" variant="h4"
 			className={classNames(
-				"text-center py-4 w-1/5",
+				"select-none text-center py-4 w-1/5",
 				letter.status === 'incorrect' && 'bg-gray-200',
 				letter.status === 'wrong-slot' && 'bg-yellow-300',
 				letter.status === 'correct' && 'bg-green-400'
