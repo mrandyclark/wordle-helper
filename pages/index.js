@@ -87,14 +87,22 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<main className="container max-w-xl p-8">
-				<div className="mb-8">
+			<main className="container max-w-xl p-4">
+				<div className="mb-4">
 					<Typography className="text-center" variant="h1">
 						Help My Wordle!
 					</Typography>
 					<Typography className="italic text-center" variant="body">
 						Add your words using the text field, update the letter statuses by clicking them before getting the next word.
 					</Typography>
+					<a
+						className="block text-blue-500 text-center"
+						href="https://www.youtube.com/shorts/z_IxkZoXEno"
+						rel="noreferrer"
+						target="_blank"
+					>
+						How to Use #HelpMyWordle
+					</a>
 				</div>
 				
 				<WordleInput 
@@ -126,6 +134,46 @@ export default function Home() {
 				</div>
 
 				<div className="border-2 my-4 p-2 rounded-lg">
+					{ nextWords && (
+						<div className="mb-4">
+							{nextWords.length > 0 && (
+								<ul>
+									{nextWords.map((nextWord, i) => {
+										return (
+											<li
+												className="flex p-2"
+												key={i}
+											>
+												<Typography
+													className="flex flex-grow items-center" 
+													component="div"
+													variant="h4"
+												>
+													{nextWord.word}
+												</Typography>
+												<Button
+													className="bg-gray-500 flex-1"
+													onClick={() => {
+														// eslint-disable-next-line react-hooks/rules-of-hooks
+														useGeneratedWord(nextWord.word)
+													}}
+													text="Use"
+												/>
+											</li>
+										);
+									})}
+								</ul>
+							)}
+							{nextWords.length === 0 && (
+								<Typography className="text-center" component="div">No words found.</Typography>
+							)}
+						</div>
+					)}
+					<Button
+						className="bg-green-500 hover:bg-green-700 mb-2"
+						onClick={() => { getNextWord() }}
+						text="Get Next Words"
+					/>
 					<label className="block mb-2">
 						<input
 							className="mr-2"
@@ -166,44 +214,6 @@ export default function Home() {
 							type="checkbox" />
 						Use Cluster Bonus
 					</label>
-					<Button
-						className="bg-green-500 hover:bg-green-700"
-						onClick={() => { getNextWord() }}
-						text="Get Next Word"
-					/>
-					<div className="my-4">
-						{nextWords && nextWords.length > 0 && (
-							<ul>
-								{nextWords.map((nextWord, i) => {
-									return (
-										<li
-											className="flex p-2"
-											key={i}
-										>
-											<Typography
-												className="flex flex-grow items-center" 
-												component="div"
-												variant="h4"
-											>
-												{nextWord.word}
-											</Typography>
-											<Button
-												className="bg-gray-500 flex-1"
-												onClick={() => {
-													// eslint-disable-next-line react-hooks/rules-of-hooks
-													useGeneratedWord(nextWord.word)
-												}}
-												text="Use"
-											/>
-										</li>
-									);
-								})}
-							</ul>
-						)}
-						{nextWords && nextWords.length === 0 && (
-							<Typography className="text-center" component="div">No words found.</Typography>
-						)}
-					</div>
 				</div>
 
 				<div className="border-2 my-4 p-2 rounded-lg">
