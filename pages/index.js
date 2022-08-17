@@ -213,6 +213,39 @@ export default function Home() {
 						text="Clear Words"
 					/>
 				</div>
+
+				<div className="italic my-4 text-center">
+				
+					<a
+						className="text-blue-500"
+						href="https://twitter.com/hashtag/helpmywordle"
+						rel="noreferrer"
+						target="_blank"
+					>
+						#HelpMyWordle
+					</a>
+					<Typography
+						component="span"
+						variant="body"
+					>
+						{' '}is a silly tool written by{' '}
+					</Typography>
+					<a
+						className="text-blue-500"
+						href="https://twitter.com/mrandyclark"
+						rel="noreferrer"
+						target="_blank"
+					>
+						@mrandyclark
+					</a>
+					<Typography
+						component="span"
+						variant="body"
+					>
+						{' '}and has no affiliation with anything but his dumb thoughts.
+					</Typography>
+					
+				</div>
 			</main>
 		</div>
 	);
