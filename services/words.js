@@ -11,6 +11,7 @@ const getWords = (preferences, userWords) => {
 	];
 
 	const cantInclude = [];
+	const correctLetters = [];
 	const mustInclude = [];
 	
 	userWords.forEach((word) => {
@@ -19,15 +20,11 @@ const getWords = (preferences, userWords) => {
 				cantInclude.push(letter.letter);
 				return;
 			}
-			// if a letter is incorrect, it cant exist in any slot
-			if (letter.status === 'incorrect' && !cantInclude.includes(letter.letter)) {
-				cantInclude.push(letter.letter);
-				return;
-			} 
 			
 			// if a letter is correct, it must exist in this slot
 			if (letter.status === 'correct') {
 				slots[i]['yes'] = letter.letter;
+				correctLetters.push(letter.letter);
 				return;
 			}
 			
@@ -44,6 +41,16 @@ const getWords = (preferences, userWords) => {
 
 				return;
 			}
+
+			// if a letter is incorrect, it cant exist in any slot
+			if (
+				letter.status === 'incorrect' &&
+				!cantInclude.includes(letter.letter) &&
+				!mustInclude.includes(letter.letter)
+			) {
+				cantInclude.push(letter.letter);
+				return;
+			} 
 		});
 	});
 		
