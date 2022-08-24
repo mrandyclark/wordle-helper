@@ -63,6 +63,26 @@ export default function Home() {
 		setPreferences(newPreferences);
 	};
 
+	const handleShare = () => {
+		const emojiLookup = {
+			"incorrect": "⬜️",
+			"wrong-slot": "🟨",
+			"correct": "🟩"
+		};
+
+		const shareable = [];
+		
+		userWords.forEach((userWord) => {
+			console.log(userWord);
+			const line = userWord.letters.map((letter) => {
+				return emojiLookup[letter.status];
+			})
+			shareable.push(line.join(''));
+		});
+
+		window.open(`sms:?&body=HelpMyWordle.com - ${userWords.length} tries%0a%0a${shareable.join('%0a')}`);
+	}
+
 	const updateNewWord = (event) => {
 		const newNewWord = { word: event.target.value };
 		setNewWord(newNewWord);
@@ -224,6 +244,14 @@ export default function Home() {
 						className="bg-red-700 hover:bg-red-900"
 						onClick={() => { clearAll() }}
 						text="Clear All Words"
+					/>
+				</div>
+
+				<div className="border-2 my-4 p-2 rounded-lg">
+					<Button
+						className="bg-green-500 hover:bg-green-700"
+						onClick={() => { handleShare() }}
+						text="Share"
 					/>
 				</div>
 
