@@ -73,7 +73,6 @@ export default function Home() {
 		const shareable = [];
 		
 		userWords.forEach((userWord) => {
-			console.log(userWord);
 			const line = userWord.letters.map((letter) => {
 				return emojiLookup[letter.status];
 			})
