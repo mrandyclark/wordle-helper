@@ -79,7 +79,7 @@ export default function Home() {
 			shareable.push(line.join(''));
 		});
 
-		window.open(`sms:?&body=HelpMyWordle.com - ${userWords.length} tries%0a%0a${shareable.join('%0a')}`);
+		window.open(`sms:?&body=HelpMyWordle.com%0a${userWords.length} tries%0a%0a${shareable.join('%0a')}`);
 	}
 
 	const updateNewWord = (event) => {
