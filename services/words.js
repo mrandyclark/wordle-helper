@@ -1,6 +1,20 @@
 import { PAST_WORDS } from './data/past-words';
 import { WORDS } from './data/all-words';
 
+const getFormattedUserWord = (word, defaultStatus) => {
+	const defaultLetter = {
+		status: defaultStatus || 'incorrect'
+	};
+
+	const split = word.split('');
+	
+	return {
+		letters: split.map((l) => {
+			return { letter: l.toLowerCase(), ...defaultLetter }
+		})
+	};
+}
+
 const getWords = (preferences, userWords) => {	
 	const slots = [
 		{ no: [] },
@@ -13,7 +27,7 @@ const getWords = (preferences, userWords) => {
 	const cantInclude = [];
 	const correctLetters = [];
 	const mustInclude = [];
-	
+
 	userWords.forEach((word) => {
 		word.letters.forEach((letter, i) => {
 			if (preferences.useAllNewLetters === true && !cantInclude.includes(letter.letter)) {
@@ -113,5 +127,6 @@ const getWords = (preferences, userWords) => {
 };
 
 module.exports = {
+	getFormattedUserWord,
 	getWords
 };

@@ -1,23 +1,23 @@
+import { getFormattedUserWord, getWords } from '../services/words';
+
 import Button from '../components/Button';
+import { DEFAULT_PREFERENCES } from '../services/preferences';
 import Head from 'next/head'
 import Typography from '../components/Typography';
 import WordleInput from '../components/WordleInput';
-import { getWords } from '../services/words';
+import { autoSolver } from '../services/auto-solve';
 import { useState } from 'react';
 
 export default function Home() {
 
 	const [addWordError, setAddWordError] = useState();
+	const [autoSolve, setAutoSolve] = useState({ word: '' });
+	const [autoSolveError, setAutoSolveError] = useState();
 	const [newWord, setNewWord] = useState({ word: '' });
 	const [nextWords, setNextWords] = useState();
 	const [userWords, setUserWords] = useState([]);
 
-	const [preferences, setPreferences] = useState({
-		includeDuplicateLetters: false,
-		ignorePastWords: false,
-		useAllNewLetters: false,
-		useClusterBonus: false
-	});
+	const [preferences, setPreferences] = useState(DEFAULT_PREFERENCES);
 
 	const addUserWord = (word) => {
 		if (word.length !== 5) {
@@ -26,27 +26,32 @@ export default function Home() {
 		}
 
 		setAddWordError();
-		
-		const defaultLetter = {
-			status: 'incorrect'
-		};
 
 		const newUserWords = [ ...userWords ];
 
-		const split = word.split('');
-		newUserWords.push({
-			letters: split.map((l) => {
-				return { letter: l.toLowerCase(), ...defaultLetter }
-			})
-		});
+		const formatted = getFormattedUserWord(word);
+		newUserWords.push(formatted);
 
 		setUserWords(newUserWords);
 		setNewWord({ word: '' });
 		setNextWords(undefined);
 	};
 
+	const autoSolveWord = (word) => {
+		setAutoSolveError();
+		const solved = autoSolver(word);
+
+		if (solved.error) {
+			setAutoSolveError(solved.error);
+			return;
+		}
+
+		setUserWords(solved.guesses);
+	};
+
 	const clearAll = () => {
 		setAddWordError();
+		setAutoSolveError();
 		setNewWord({ word: '' });
 		setNextWords(undefined);
 		setUserWords([]);
@@ -81,6 +86,11 @@ export default function Home() {
 
 		window.open(`sms:?&body=HelpMyWordle.com%0a${userWords.length} tries%0a%0a${shareable.join('%0a')}`);
 	}
+
+	const updateAutoSolveWord = (event) => {
+		const newAutoSolve = { word: event.target.value };
+		setAutoSolve(newAutoSolve);
+	};
 
 	const updateNewWord = (event) => {
 		const newNewWord = { word: event.target.value };
@@ -252,6 +262,29 @@ export default function Home() {
 						onClick={() => { handleShare() }}
 						text="Share"
 					/>
+				</div>
+
+				<div className="border-2 my-4 p-2 rounded-lg">
+					<input
+						className="border-2 mb-2 p-2 w-full"
+						value={autoSolve.word} 
+						onChange={(event) => {
+							updateAutoSolveWord(event);
+						}}
+					/>
+					<Button
+						className="bg-blue-500 hover:bg-blue-700"
+						onClick={() => { autoSolveWord(autoSolve.word) }}
+						text="Autosolve For Word"
+					/>
+					{autoSolveError && autoSolveError != '' && (
+						<Typography
+							className="bg-red-100 mt-4 p-2 text-center"
+							component="div"
+						>
+							{autoSolveError}
+						</Typography>
+					)}
 				</div>
 
 				<div className="italic my-4 text-center">
