@@ -238,6 +238,14 @@ export default function Home() {
 						onClick={() => { addUserWord(newWord.word) }}
 						text="Add Custom Word"
 					/>
+					
+					<Typography
+						className="italic mt-2 p-1 text-center text-xs"
+						component="div"
+					>
+						Add your own word as a guess.
+					</Typography>
+
 					{addWordError && addWordError != '' && (
 						<Typography
 							className="bg-red-100 mt-4 p-2 text-center"
@@ -262,6 +270,12 @@ export default function Home() {
 						onClick={() => { handleShare() }}
 						text="Share"
 					/>
+					<Typography
+						className="italic mt-2 p-1 text-center text-xs"
+						component="div"
+					>
+						Share all those silly box emojis with your friends.
+					</Typography>
 				</div>
 
 				<div className="border-2 my-4 p-2 rounded-lg">
@@ -277,6 +291,14 @@ export default function Home() {
 						onClick={() => { autoSolveWord(autoSolve.word) }}
 						text="Autosolve For Word"
 					/>
+					
+					<Typography
+						className="italic mt-2 p-1 text-center text-xs"
+						component="div"
+					>
+						See how HelpMyWordle would solve a word.
+					</Typography>
+				
 					{autoSolveError && autoSolveError != '' && (
 						<Typography
 							className="bg-red-100 mt-4 p-2 text-center"
