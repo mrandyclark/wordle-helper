@@ -8,6 +8,8 @@ const autoSolver = (userWord) => {
 	if (!userWord || typeof userWord !== 'string' || userWord.length !== 5) {
 		return { error: 'word must be 5 characters.'}
 	}
+
+	userWord = userWord.toLowerCase();
 	
 	const exists = WORDS.find((word) => {
 		return word.word === userWord;
